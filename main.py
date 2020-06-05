@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, redirect, render_template
+from flask import Flask, request, make_response, redirect, render_template, jsonify
 from pyswip.prolog import Prolog
 
 app = Flask(__name__)
@@ -11,20 +11,17 @@ def prol():
   for soln in prolog.query("father(X,Y)"):
       print(soln["X"], "is the father of", soln["Y"])
 
-@app.route('/')
+@app.route('/home')
 def index():
   return render_template('hello.html')
-
-@app.route('/hello', methods=['GET', 'POST'])
-def hello():
-  return { 'foo': 'bar' }
 
 @app.route('/prologrequest', methods=['GET', 'POST'])
 def prologrequest():
   print('begin')
   prol()
   print('end')
-  if request.method == 'POST':
-    return 'ok'
-  else:
-    return 'nothing'
+  return jsonify(
+    peso=123,
+    fiebre=True,
+    tos=False,
+  )

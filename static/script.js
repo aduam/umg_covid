@@ -21,6 +21,7 @@ function onSubmit(e) {
     tieneMucosidad: tieneMucosidad.value,
   };
   console.log(data);
+  console.log('prologrequest')
   fetch('/prologrequest', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(data), // data can be `string` or {object}!
