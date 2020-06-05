@@ -1,0 +1,53 @@
+*, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.title {
+  color: #1275C7;
+  text-align: center;
+  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-top: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sintomas {
+  margin-top: 16px;
+  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+  font-size: 24px;
+}
+
+.form-inputs {
+  margin-top: 24px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 8px 0 4px 0;
+  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+select {
+  height: 28px;
+}
+
+input {
+  height: 28px;
+}
+
+button {
+  margin: 16px 0;
+  height: 35px;
+}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ super() }}
+  Consulta sobre covid-19
+{% endblock %}
+{% block content %}
+  <h1 class="title">Proyecto IA sobre el covid 19 UMG</h1>
+  <form class="form">
+    <h3 class="sintomas">Ingrese los sintomas</h3>
+    <div class="form-inputs">
+      <label for="input-peso">Ingrese su peso en libras</label>
+      <input id="input-peso" placeholder="Peso" type="number" required />
+      <label for="input-fiebre">¿Tiene fiebre?</label>
+      <select id="input-fiebre" name="select-fiebre">
+        <option value="true">Si</option> 
+        <option value="false" selected>No</option>
+      </select>
+      <label for="input-fatiga">¿Tiene fatiga?</label>
+      <select id="input-fatiga" name="select-fatiga">
+        <option value="true">Si</option> 
+        <option value="false" selected>No</option>
+      </select>
+      <label for="input-tos-seca">¿Tiene tos seca?</label>
+      <select id="input-tos-seca" name="select-tos-seca">
+        <option value="true">Si</option> 
+        <option value="false" selected>No</option>
+      </select>
+      <label for="input-apetito">¿Tiene falta de apetito?</label>
+      <select id="input-apetito" name="select-apetito">
+        <option value="true">Si</option> 
+        <option value="false" selected>No</option>
+      </select>
+      <label for="input-dolor-cuerpo">¿Tiene dolores de cuerpo?</label>
+      <select id="input-dolor-cuerpo" name="select-dolor-cuerpo">
+        <option value="true">Si</option> 
+        <option value="false" selected>No</option>
+      </select>
+      <label for="input-respirar">¿Tiene dificultad para respirar?</label>
+      <select id="input-respirar" name="select-respirar">
+        <option value="true">Si</option>
+        <option value="false" selected>No</option>
+      </select>
+      <label for="input-mucosidad">¿Tiene mucosidad o flema?</label>
+      <select id="input-mucosidad" name="select-mucosidad">
+        <option value="true">Si</option> 
+        <option value="false" selected>No</option>
+      </select>
+      <button type="submit">Enviar sintomas</button>
+    </div>
+  </form>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
