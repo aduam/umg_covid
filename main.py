@@ -1,7 +1,15 @@
 from flask import Flask, request, make_response, redirect, render_template, jsonify
 from pyswip.prolog import Prolog
+from config import config
 
-app = Flask(__name__)
+def create_app(enviroment):
+  app = Flask(__name__)
+  app.config.from_object(enviroment)
+
+  return app
+
+enviroment = config['development']
+app = create_app(enviroment)
 
 def prol(prolog):
   prolo = Prolog()
@@ -104,3 +112,6 @@ def prologrequest():
     dificultad_respirar=result['dificultad_respirar'],
     mucosidad=result['mucosidad'],
   )
+
+if __name__ == '__main__':
+    app.run(debug=True)
