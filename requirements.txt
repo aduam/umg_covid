@@ -1,16 +1,14 @@
 asgiref==3.2.3
+click==7.1.2
 defusedxml==0.6.0
-Django==3.0.2
-django-block-snippets==2.0.1
-django-chamber==0.5.23
-django-ipware==2.1.0
-django-is-core==2.20.0
-django-pyston==2.10.6
 filemagic==1.6
+Flask==1.1.2
 gunicorn==20.0.4
 import-string==0.1.0
+itsdangerous==1.1.0
+Jinja2==2.11.2
+MarkupSafe==1.1.1
 Pillow==7.1.1
-pkg-resources==0.0.0
 pyparsing==2.4.7
 PyPrind==2.11.2
 pyswip==0.2.9
@@ -21,3 +19,4 @@ pytz==2019.3
 six==1.15.0
 sqlparse==0.3.0
 Unidecode==1.1.1
+Werkzeug==1.0.1

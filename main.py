@@ -1,5 +1,5 @@
 from flask import Flask, request, make_response, redirect, render_template, jsonify
-from pyswip.prolog import Prolog
+#from pyswip.prolog import Prolog
 from config import config
 
 def create_app(enviroment):
@@ -8,12 +8,13 @@ def create_app(enviroment):
 
   return app
 
-enviroment = config['development']
+enviroment = config['production']
+
 app = create_app(enviroment)
 
 def prol(prolog):
-  prolo = Prolog()
-  prolo.consult("proyecto_final.pl")
+  #prolo = Prolog()
+  #prolo.consult("proyecto_final.pl")
   peso = prolog['peso']
   fiebre = prolog['fiebre']
   fatiga = prolog['fatiga']
