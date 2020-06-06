@@ -2,4 +2,3 @@ Flask
 gunicorn
 Jinja2
 pyswip
-cowpy==1.0.3

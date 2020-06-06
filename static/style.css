@@ -103,3 +103,56 @@ h3 > span {
 p {
   color: white;
 }
+
+table {
+  margin: 0 auto;
+}
+
+th {
+  padding: 4px 16px;
+  color: white;
+  font-size: 20px;
+}
+
+td {
+  padding: 4px 16px;
+  columns: white;
+}
+
+td > p {
+  columns: white;
+  font-size: 16px;
+}
+
+footer {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-al {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.wrapp-alumno {
+  display: flex;
+  padding: 8px;
+}
+
+.alumno {
+  color: white;
+  width: 300px;
+  font-size: 15px;
+}
+
+.carne {
+  color: white;
+  width: 150px;
+  font-size: 15px;
+}

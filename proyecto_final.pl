@@ -1,3 +1,38 @@
+%sintomas 
+
+sintomas(fiebre).
+sintomas(fatiga).
+sintomas(tosSeca).
+sintomas(faltaDeApetito).
+sintomas(doloresDeCuerpo).
+sintomas(dificultadAlRespirar).
+sintomas(mucosidad).
+
+%relacion sintomas medicamento
+%hermana(x,y): x tomar medicamento y
+
+tomar_medicamento(acetaminofen,fiebre).
+tomar_medicamento(ibuprofeno,fiebre).
+tomar_medicamento(aspirina,fiebre).
+tomar_medicamento(cafeina,fatiga).
+tomar_medicamento(metifenidad,fatiga).
+tomar_medicamento(dextroafetamina,fatiga).
+tomar_medicamento(modafilino,fatiga).
+tomar_medicamento(levodropropizina,tosSeca).
+tomar_medicamento(dropropizina,tosSeca).
+tomar_medicamento(dextrometorfano,tosSeca).
+tomar_medicamento(cloval,tosSeca).
+tomar_medicamento(aceiteDePescado,faltaDeApetito).
+tomar_medicamento(iproheptadina,faltaDeApetito).
+tomar_medicamento(pizotifeno,faltaDeApetito).
+tomar_medicamento(ibuprofeno,doloresDeCuerpo).
+tomar_medicamento(paracetamol,doloresDeCuerpo).
+tomar_medicamento(dipirona,doloresDeCuerpo).
+tomar_medicamento(albuterol,dificultadAlRespirar).
+tomar_medicamento(levalbuterol,dificultadAlRespirar).
+tomar_medicamento(combivent,dificultadAlRespirar).
+tomar_medicamento(ambroxol,mucosidad).
+tomar_medicamento(mucovital,mucosidad).
 
 :-
 write('Realizar Test ingrese si o no').
@@ -24,6 +59,7 @@ N is G * 3,
 R is H + I + J + K + L + M + N,
 COVID is 90,
 
+%reglas
 write('El resultado es: '),write(R),write('%'),tab(1),nl,nl,
 
 (R > COVID -> write('USTED TIENE COVID19 '); (R < COVID ->write('USTED NO TIENE COVID19 ')) ),nl,nl,
@@ -49,7 +85,4 @@ write('Farmacias Galeno 15 Av. Z. 6, 2-61, 15 Avenida 6, Cdad. de Guatemala '),n
 write('Farmacias Galeno, 15 Calle C 15-72 '),nl,
 write('Farmacia galeno zona 6 15 av 12 calle, Cdad. de Guatemala'),nl,
 write('Farmacia galeno zona 6 1 calle santa luisa, Cdad. de Guatemala '),nl,
-write('1A. Calle Y 2A. Av. Lote 13 "A", Jocotales Zona 6 Chinautla, Guatemala'); (FARMACIA = 0 -> write(' ')) ),nl.
-
-no :-
-write('ESPERO SE ENCUENTRE BIEN '),nl.
+write('1A. Calle Y 2A. Av. Lote 13 "A", Jocotales Zona 6 Chinautla, Guatemala'); (FAR

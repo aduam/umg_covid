@@ -1,5 +1,7 @@
-from flask import Flask, request, make_response, redirect, render_template, jsonify
-#from pyswip.prolog import Prolog
+"""Importando las librerías"""
+from flask import Flask, request, render_template, jsonify
+"""Importando la librería de prolog"""
+from pyswip.prolog import Prolog
 from config import config
 
 def create_app(enviroment):
@@ -12,9 +14,15 @@ enviroment = config['production']
 
 app = create_app(enviroment)
 
+"""Función de la lógica de prolog"""
 def prol(prolog):
-  #prolo = Prolog()
-  #prolo.consult("proyecto_final.pl")
+  """Instanciando prolog"""
+  prolo = Prolog()
+
+  """Llamando el archivo de prolog"""
+  prolo.consult("proyecto_final.pl")
+
+  """Leyendo las variables de prolog"""
   peso = prolog['peso']
   fiebre = prolog['fiebre']
   fatiga = prolog['fatiga']
@@ -24,6 +32,7 @@ def prol(prolog):
   dificultad_respirar = prolog['dificultad_respirar']
   mucosidad = prolog['mucosidad']
 
+  """calculando los datos que vienen de prolog"""
   h = int(fiebre) * 20
   i = int(fatiga) * 20
   j = int(tos_seca) * 20
@@ -33,8 +42,20 @@ def prol(prolog):
   n = int(mucosidad) * 3
   r = h + i + j + k + l + m + n
 
+  """Declarando la variable que devolverá la función"""
   result = {
     'total_covid': r,
+    'farmacias': [
+      { 'titulo': 'Farmacia Galeno', 'direccion': '1A. Calle Y 2A. Av. Lote 13 "A", Jocotales Zona 6 Chinautla, Guatemala' },
+      { 'titulo': 'Farmacia Galeno', 'direccion': '1a. Calle Lote H1, Zona 0 Colonia El Sauzalito Chinautla, Guatemala' },
+      { 'titulo': 'Farmacia Galeno', 'direccion': '15a. Avenida 15-78, Zona 6, Guatemala, Guatemala' },
+      { 'titulo': 'Farmacia Galeno', 'direccion': '15 Avenida 10-67 Zona 6 Guatemala' },
+      { 'titulo': 'Farmacia Galeno', 'direccion': '15 Calle C 15-72, Cdad. de Guatemala' },
+      { 'titulo': 'Farmacia RH', 'direccion': '16 Avenida A 19-04, Cdad. de Guatemala' },
+      { 'titulo': 'Farmacia Cruz Verde', 'direccion': '15 Avenida, Cdad. de Guatemala ' },
+      { 'titulo': 'Farmacia Similares', 'direccion': '27 Calle Proyectos 4-3' },
+      { 'titulo': 'Farmacia El Socorro', 'direccion': '3A Calle Colonia Sauzalito' },
+    ],
     'fiebre': {
       'titulo': 'Fiebre',
       'medicina': [
@@ -93,26 +114,36 @@ def prol(prolog):
       ],
     } if mucosidad == '1' else False,
   }
+  """Retornando el diccionario con los datos devueltos de prolog"""
   return result
 
+"""Ruta principal"""
 @app.route('/')
 def index():
   return render_template('hello.html')
 
+"""Ruta del solicitud a prolog tipo api con el método POST"""
 @app.route('/prologrequest', methods=['GET', 'POST'])
 def prologrequest():
+  """Obteniendo los datos del cliente (navegador)"""
   data = request.get_json(force=True)
-  result = prol(data)
+
+  """Llamando a la función que tiene la lógica de prolog"""
+  prolog = prol(data)
+
+  """Retornando al cliente un JSON con los datos de la solicitud"""
   return jsonify(
-    total_covid=result['total_covid'],
-    fiebre=result['fiebre'],
-    fatiga=result['fatiga'],
-    tos_seca=result['tos_seca'],
-    falta_apetito=result['falta_apetito'],
-    dolor_cuerpo=result['dolor_cuerpo'],
-    dificultad_respirar=result['dificultad_respirar'],
-    mucosidad=result['mucosidad'],
+    total_covid=prolog['total_covid'],
+    fiebre=prolog['fiebre'],
+    fatiga=prolog['fatiga'],
+    tos_seca=prolog['tos_seca'],
+    falta_apetito=prolog['falta_apetito'],
+    dolor_cuerpo=prolog['dolor_cuerpo'],
+    dificultad_respirar=prolog['dificultad_respirar'],
+    mucosidad=prolog['mucosidad'],
+    farmacias=prolog['farmacias'],
   )
 
+"""Instanciando y levantando el servidor"""
 if __name__ == '__main__':
     app.run(debug=True)

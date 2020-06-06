@@ -53,6 +53,214 @@
     </div>
   </div>
   <div class="farmacias">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Úbicación</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+      </tbody>
+    </table>
   </div>
+  <div id='map' style='width: 800px; height: 500px; margin: 24px auto;'></div>
+  <footer>
+    <div class="title-al">Alumnos</div>
+    <div class="wrapp-alumno">
+      <div class="alumno">Nombre: Alan Jackson Duarte Marroquín</div><div class="carne">Carnet: 5990-11-282</div>
+    </div>
+    <div class="wrapp-alumno">
+      <div class="alumno">Nombre: Saul Eduardo Bajan Perez</div><div class="carne">Carnet: 5990-14-643</div>
+    </div>
+    <div class="wrapp-alumno">
+      <div class="alumno">Nombre: Alex Adolfo Top</div><div class="carne">Carnet: 5990-11-4005</div>
+    </div>
+    <div class="wrapp-alumno">
+      <div class="alumno">Nombre: William David Ramos Mejia</div><div class="carne">Carnet: 5990-04-421</div>
+    </div>
+    <div class="wrapp-alumno">
+      <div class="alumno">Nombre: Mario de Jesus Vasquez Rosa</div><div class="carne">Carnet: 5990-14-6057</div>
+    </div>
+    <div class="wrapp-alumno">
+      <div class="alumno">Nombre: Edgar López</div><div class="carne">Carnet: 5990-14-641</div>
+    </div>
+  </footer>
+  <script>
+    /* Script del mapa que está incrustado en la página */
+    mapboxgl.accessToken = 'SECRET_KEY';
+
+    const geojson = {
+      'type': 'FeatureCollection',
+      'features': [
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia Galeno',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.4889547, 14.687396]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia Galeno',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.4886036, 14.6801113]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia Galeno',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.484023, 14.6751607]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia RH',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.4906137, 14.6658244]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia Galeno',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.4886036, 14.6801113]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia Cruz Verde',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.4966097, 14.6628673]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia Fuerte',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.4966097, 14.6628673]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia Familiar',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.5035294, 14.6503087]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacias de la comunidad',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.4927654, 14.6499904]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia Batres',
+            'iconSize': [30, 30]
+          },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-90.5017189, 14.6515282]
+          }
+        },
+        {
+          'type': 'Feature',
+          'properties': {
+            'message': 'Farmacia similares',
+            'iconSize': [30, 30]
+          },
+          'geometry': {
+            'type': 'Point',
+            'coordinates': [-90.5005641, 14.6484209]
+          }
+        },
+      ]
+    };
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-90.494083, 14.6615357],
+      zoom: 15
+    });
+
+    const marker = new mapboxgl.Marker()
+      .setLngLat([-90.494083, 14.6615357])
+      .addTo(map);
+
+    geojson.features.forEach(function(marker) {
+    // create a DOM element for the marker
+    const el = document.createElement('div');
+    const img = document.createElement('img');
+    el.className = 'marker';
+    //https://containerwanda.s3-us-west-2.amazonaws.com/c.jpg
+    el.style.width = marker.properties.iconSize[0] + 'px';
+    el.style.height = marker.properties.iconSize[1] + 'px';
+
+    img.style.width = '100%'
+    img.style.height = '100%'
+    img.src = 'https://containerwanda.s3-us-west-2.amazonaws.com/cruz.jpg'
+    img.alt = 'icon'
+    el.appendChild(img)
+
+    const p1 = document.createElement('p')
+    p1.style.margin = '0'
+    p1.style.fontSize = '11px'
+    p1.style.fontWeight = '800'
+    p1.style.color = 'black'
+    p1.style.lineHeight = '10px'
+    const textP1 = document.createTextNode(`${marker.properties.message}`)
+    p1.appendChild(textP1)
+    el.appendChild(p1)
+
+    el.addEventListener('click', function() {
+    window.alert(marker.properties.message);
+    });
+
+    new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .addTo(map);
+    });
+  </script>
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}
